@@ -1,0 +1,38 @@
+// script.js
+
+const triggerBtn = document.getElementById('js-trigger');
+const resetBtn = document.getElementById('reset-btn');
+const statusBox = document.getElementById('status-box');
+const statusText = document.getElementById('status-text');
+
+// 1. JavaScript Functionality: Event Listeners
+triggerBtn.addEventListener('click', () => {
+    runDemo();
+});
+
+function runDemo() {
+    // Update Content
+    statusText.innerText = "Processing...";
+    statusBox.classList.replace('bg-slate-700', 'bg-blue-900');
+
+    // 2. JavaScript Animation (Web Animations API)
+    // This animates the status box specifically
+    statusBox.animate([
+        { transform: 'translateX(0px)', opacity: 1 },
+        { transform: 'translateX(20px)', opacity: 0.7 },
+        { transform: 'translateX(-20px)', opacity: 0.7 },
+        { transform: 'translateX(0px)', opacity: 1 }
+    ], {
+        duration: 1000,
+        iterations: 10
+    }).onfinish = () => {
+        statusText.innerText = "Task Complete!";
+        statusBox.classList.replace('bg-blue-900', 'bg-green-600');
+    };
+}
+
+// Reset Functionality
+resetBtn.addEventListener('click', () => {
+    statusText.innerText = "System Idle";
+    statusBox.className = "p-4 bg-slate-700 rounded-lg mb-6 transition-all duration-300";
+});

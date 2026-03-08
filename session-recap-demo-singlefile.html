@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Hour Demo: HTML, CSS & JS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* --- 1. CSS ANIMATION SECTION --- */
+        /* This is the "Pulse/Float" effect that runs automatically */
+        @keyframes floatEffect {
+            0% { transform: translate(0px, 0px) scale(1); }
+            50% { transform: translate(40px, 20px) scale(1.2); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+
+        .css-blob {
+            /* We attach the animation 'floatEffect' here */
+            animation: floatEffect 5s infinite ease-in-out;
+            /* Ensure it stays behind the text */
+            z-index: 0;
+        }
+
+        /* Standard CSS Hover Effect */
+        .card-hover:hover {
+            border-color: #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 flex items-center justify-center min-h-screen font-sans">
+
+    <div class="relative bg-slate-800 p-10 rounded-3xl border border-slate-700 w-96 card-hover overflow-hidden">
+        
+        <div class="css-blob absolute -top-5 -left-5 w-32 h-32 bg-purple-500 rounded-full opacity-100 blur-md"></div>
+
+        <div class="relative z-10 text-center">
+            <h1 class="text-white text-2xl font-bold mb-2">Live Demo</h1>
+            <p class="text-slate-400 text-sm mb-6">CSS is floating; JS is waiting...</p>
+
+            <div id="statusBox" class="bg-slate-700 p-4 rounded-xl text-blue-300 font-mono text-sm mb-6 border border-slate-600">
+                System Status: IDLE
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <button onclick="startJSAnimation()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg transition-transform active:scale-95">
+                    Trigger JS Animation
+                </button>
+                <button onclick="resetDemo()" class="text-slate-500 hover:text-white text-sm">
+                    Reset System
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function startJSAnimation() {
+            const box = document.getElementById('statusBox');
+            
+            // Step 1: Update the Text (Standard JS)
+            box.innerText = "RUNNING LOGIC...";
+            box.classList.add('border-blue-500');
+
+            // Step 2: The JavaScript Animation (Web Animations API)
+            // This is "Active" animation—it only happens when we call this function
+            box.animate([
+                { transform: 'translateX(0px)', backgroundColor: '#334155' }, // Start (slate-700)
+                { transform: 'translateX(15px)', backgroundColor: '#1e3a8a' }, // Right + Dark Blue
+                { transform: 'translateX(-15px)', backgroundColor: '#1e3a8a' }, // Left + Dark Blue
+                { transform: 'translateX(0px)', backgroundColor: '#064e3b' }  // End (emerald-900)
+            ], {
+                duration: 600,      // 0.6 seconds
+                iterations: 1,      // Play once
+                easing: 'ease-in-out'
+            }).onfinish = () => {
+                // This code runs only AFTER the animation finishes
+                box.innerText = "SUCCESS: TASK COMPLETE";
+                box.style.backgroundColor = '#064e3b'; // Keep the green color
+            };
+        }
+
+        function resetDemo() {
+            const box = document.getElementById('statusBox');
+            box.innerText = "System Status: IDLE";
+            box.style.backgroundColor = ''; // Reset to CSS default
+            box.classList.remove('border-blue-500');
+        }
+    </script>
+</body>
+</html>

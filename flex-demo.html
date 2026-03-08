@@ -1,0 +1,86 @@
+<!DOCType html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="flex-demo.css">
+		<link href="https://cdn.jsdelivr.net/npm/tailwindcss@latest/dist/tailwind.min.css" rel="stylesheet">
+		<script>
+			let jsonString = '{"name": "Alice", "age": 25}';
+			let user = JSON.parse(jsonString); 
+			console.log(typeof user)
+			console.log(user)
+			console.log(user.name); // Alice
+
+			user = { name: "Alice", 
+				age: 25,
+				doContact: function(age, name) {
+					console.log(`doContact function ${age} - ${name}`);
+				} 
+			};
+			console.log(typeof user)
+			console.log(user)
+			user.doContact(user.age, user.name);
+
+			jsonString = JSON.stringify(user); 
+
+			console.log(typeof jsonString)
+			console.log(jsonString); // {"name":"Alice","age":25}
+
+			const numbers = [5, 12, 8, 130, 44];
+
+			// Requirement: Keep only numbers greater than 10
+			const bigNumbers = numbers.filter(num => num > 10);
+
+			console.log(bigNumbers); // [12, 130, 44]
+
+			const bigNumbersFunc = numbers.filter(function(num) { return num > 10;});
+ 
+			console.log(bigNumbersFunc); 
+		</script>
+	</head>
+	<body class="bg-blue text-white">
+		<h1>H1 tag for demo</h1>
+		<div class="container" id="container">
+			<div class="item">1</div>
+			<div class="item">2</div>
+			<div class="item">3</div>
+			<div id="content">Hello, World!</div>
+		</div>
+
+		<div class="parent">
+		  <div>First Child (No border-top, Grey background)</div>
+		  <div>Second Child (White background)</div>
+		  <div>Third Child (Grey background, Blue text)</div>
+		  <div>Fourth Child (White background)</div>
+		  <div>Fifth Child (Grey background)</div>
+		  <div>Sixth Child (White background, Blue text, No margin-bottom)</div>
+		</div>
+
+		<div class="text-white bg-blue-500 p-4">Hello, Tailwind!</div>
+		 <p class="text-lg font-semibold leading-relaxed">
+		   Tailwind typography is awesome!
+		</p>
+		 
+		 <div class="space-y-4">
+		   <p class="p-2">First Item</p>
+		   <p class="p-2">Second Item</p>
+		</div>
+
+		
+		<div class="border border-gray-300 rounded-md p-4"> Bordered Box
+		</div>
+ 
+		 <div class="grid grid-cols-3 gap-4">
+<div class="bg-blue-500">Item 1</div> <div class="bg-green-500">Item 2</div> <div class="bg-red-500">Item 3</div>
+</div>
+ 
+
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"> <div class="bg-blue-500">Item 1</div>
+<div class="bg-green-500">Item 2</div>
+<div class="bg-red-500">Item 3</div>
+<div class="bg-yellow-500">Item 4</div> </div>
+ 
+
+	</body>
+</html>
